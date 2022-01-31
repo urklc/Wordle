@@ -8,12 +8,6 @@
 import Foundation
 import UserNotifications
 
-enum WordleError: Error {
-    case notValidCharacter
-    case notInDictionary
-    case inputAlreadyExists
-}
-
 final class GameViewModel {
 
     private enum Constant {
@@ -50,7 +44,7 @@ final class GameViewModel {
         didSet {
             onCharacterSuccess?(currentInput)
 
-            if currentInput.count == 5 {
+            if currentInput.count == Global.wordLength {
                 provide(input: currentInput)
             }
         }
@@ -73,20 +67,6 @@ final class GameViewModel {
             currentGame = database.initializeGame(targetWord: targetWord!)
         }
         print("target word: \(targetWord!)")
-        let content = UNMutableNotificationContent()
-        content.title = "Hello world"
-        content.body = "Wordle"
-
-        let date = Date()
-        var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-        dateComponents.hour = 22
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
-                                                    repeats: false)
-
-        let request = UNNotificationRequest(identifier: "wordle",
-                                            content: content,
-                                            trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 
     // MARK: - Public Methods
@@ -103,9 +83,10 @@ final class GameViewModel {
     // MARK: - Private Methods
 
     private func provide(input: String) {
-        guard let targetWord = targetWord else {
-            return
-        }
+        guard let targetWord = targetWord,
+              let game = currentGame else {
+                  return
+              }
 
         guard database.retrieveWords().contains(input) else {
             onError?(.notInDictionary)
@@ -119,27 +100,39 @@ final class GameViewModel {
 
         inputWords.append(input)
 
-
-
-        if let game = currentGame {
-            database.addWordToGame(game: game, word: input)
-        }
+        database.addWordToGame(game: game, word: input)
 
         onInputComplete?(InputComplete(input: input, targetWord: targetWord))
 
         let isSuccess = inputWords.contains(targetWord)
-        let isCompleted = inputWords.count == 6
+        let isCompleted = inputWords.count == Global.totalTryCount
         if isSuccess {
             onGameOver?(true)
-            if let game = currentGame {
-                database.updateGameStatus(game: game, isSuccess: true)
-            }
+            database.updateGameStatus(game: game, isSuccess: true)
         } else if isCompleted {
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             onGameOver?(false)
-            if let game = currentGame {
-                database.updateGameStatus(game: game, isSuccess: false)
-            }
+            database.updateGameStatus(game: game, isSuccess: false)
         }
+    }
+
+    private func scheduleReminderNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Hey, you have pending wordles!"
+        content.body = "Tap to check out!"
+
+        let date = Date()
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        dateComponents.hour = 22
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
+                                                    repeats: false)
+
+        let request = UNNotificationRequest(identifier: "wordle",
+                                            content: content,
+                                            trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+
+    private func removePendingNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }

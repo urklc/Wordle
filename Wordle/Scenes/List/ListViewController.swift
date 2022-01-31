@@ -59,7 +59,7 @@ extension ListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Game", for: indexPath)
         let game = items[indexPath.row]
         cell.textLabel?.text = "\(game.words.count) - \(game.date)"
-        cell.textLabel?.textColor = game.isSuccess ? .systemGreen : (game.words.count == 6 ? .red : .darkGray)
+        cell.textLabel?.textColor = game.isSuccess ? .systemGreen : (game.words.count == Global.totalTryCount ? .red : .darkGray)
         return cell
     }
 }
@@ -68,7 +68,7 @@ extension ListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let game = items[indexPath.row]
-        guard game.words.count < 6 else {
+        guard game.words.count < Global.totalTryCount else {
             return
         }
 

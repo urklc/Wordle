@@ -16,7 +16,7 @@ struct InputComplete {
         var matchedIndexes: [Int] = []
         var nearlyMatchedIndexes: [Int] = []
 
-        for i in 0..<5 {
+        for i in 0..<Global.wordLength {
             let inputCharacter = input[input.index(input.startIndex, offsetBy: i)]
             let targetCharacter = targetWord[targetWord.index(targetWord.startIndex, offsetBy: i)]
 

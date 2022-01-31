@@ -38,30 +38,10 @@ class GameViewController: UIViewController {
             self?.apply(inputComplete)
         }
         model.onError = { [weak self] error in
-            let message: String
-            switch error {
-            case .notValidCharacter:
-                message = "not valid character"
-            case .notInDictionary:
-                message = "not in dictionary"
-            case .inputAlreadyExists:
-                message = "input already exists"
-            }
-
-            let alertController = UIAlertController(
-                title: "hata",
-                message: message,
-                preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
+            self?.presentAlert(title: "hata", message: error.description)
         }
         model.onGameOver = { [weak self] isSuccess in
-            let alertController = UIAlertController(
-                title: "oyun bitti",
-                message: isSuccess ? "basarili :)" : "basarisiz :(",
-                preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-            self?.present(alertController, animated: true, completion: nil)
+            self?.presentAlert(title: "oyun bitti", message: isSuccess ? "basarili :)" : "basarisiz :(")
         }
     }
 
@@ -102,6 +82,15 @@ class GameViewController: UIViewController {
             }
         }
         addStackViewForNewWord()
+    }
+
+    private func presentAlert(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 
     @objc func textDidChange(_ sender: UITextField) {

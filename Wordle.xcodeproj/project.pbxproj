@@ -17,6 +17,8 @@
 		3C046BB22790733A00A36C28 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C046BB12790733A00A36C28 /* Word.swift */; };
 		3C046BB42790765700A36C28 /* words.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3C046BB32790765700A36C28 /* words.realm */; };
 		3C608D9427A6D4CC00AFB470 /* InputComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C608D9327A6D4CC00AFB470 /* InputComplete.swift */; };
+		3C9447E227A7D3DD0049AD3E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9447E127A7D3DD0049AD3E /* Global.swift */; };
+		3C9447E727A7D53A0049AD3E /* WordleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9447E627A7D53A0049AD3E /* WordleError.swift */; };
 		3CB574E42791D4D400CEA86B /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB574E32791D4D400CEA86B /* GameDatabase.swift */; };
 		3CF690172795B41B00F493A9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF690162795B41B00F493A9 /* Game.swift */; };
 		3CF6901C2795B7D500F493A9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6901B2795B7D500F493A9 /* ListViewController.swift */; };
@@ -37,6 +39,8 @@
 		3C046BB12790733A00A36C28 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		3C046BB32790765700A36C28 /* words.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = words.realm; sourceTree = "<group>"; };
 		3C608D9327A6D4CC00AFB470 /* InputComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputComplete.swift; sourceTree = "<group>"; };
+		3C9447E127A7D3DD0049AD3E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		3C9447E627A7D53A0049AD3E /* WordleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleError.swift; sourceTree = "<group>"; };
 		3CB574E32791D4D400CEA86B /* GameDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDatabase.swift; sourceTree = "<group>"; };
 		3CF690162795B41B00F493A9 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3CF6901B2795B7D500F493A9 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -88,23 +92,49 @@
 			children = (
 				3C046B6C279057BA00A36C28 /* Info.plist */,
 				3C046B5E279057B800A36C28 /* AppDelegate.swift */,
+				3C9447E127A7D3DD0049AD3E /* Global.swift */,
 				3C046B60279057B800A36C28 /* SceneDelegate.swift */,
-				3CF6901B2795B7D500F493A9 /* ListViewController.swift */,
 				3C046B67279057BA00A36C28 /* Assets.xcassets */,
 				3CF6901A2795B7AC00F493A9 /* Database */,
+				3C9447E427A7D4230049AD3E /* Scenes */,
+			);
+			path = Wordle;
+			sourceTree = "<group>";
+		};
+		3C9447E327A7D41F0049AD3E /* List */ = {
+			isa = PBXGroup;
+			children = (
+				3CF6901B2795B7D500F493A9 /* ListViewController.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		3C9447E427A7D4230049AD3E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
 				3CF690182795B79800F493A9 /* Game */,
+				3C9447E327A7D41F0049AD3E /* List */,
 				3C046B69279057BA00A36C28 /* LaunchScreen.storyboard */,
 				3C046B64279057B800A36C28 /* Main.storyboard */,
 			);
-			path = Wordle;
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3C9447E527A7D5320049AD3E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C608D9327A6D4CC00AFB470 /* InputComplete.swift */,
+				3C9447E627A7D53A0049AD3E /* WordleError.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3CF690182795B79800F493A9 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				3C9447E527A7D5320049AD3E /* Models */,
 				3C046B62279057B800A36C28 /* GameViewController.swift */,
 				3C046B722790699000A36C28 /* GameViewModel.swift */,
-				3C608D9327A6D4CC00AFB470 /* InputComplete.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -260,7 +290,9 @@
 				3C608D9427A6D4CC00AFB470 /* InputComplete.swift in Sources */,
 				3C046B5F279057B800A36C28 /* AppDelegate.swift in Sources */,
 				3CF6901C2795B7D500F493A9 /* ListViewController.swift in Sources */,
+				3C9447E227A7D3DD0049AD3E /* Global.swift in Sources */,
 				3C046B61279057B800A36C28 /* SceneDelegate.swift in Sources */,
+				3C9447E727A7D53A0049AD3E /* WordleError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

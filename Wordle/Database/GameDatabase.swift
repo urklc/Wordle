@@ -67,7 +67,7 @@ final class GameDatabase {
     func retrieveAndConsumeRandomWord() -> String {
         let words = realm?
             .objects(Word.self)
-            .filter { $0.item.count == 5 && !$0.skip }
+            .filter { $0.item.count == Global.wordLength && !$0.skip }
         let wordsArray = words?.compactMap { $0.item } ?? []
 
         let randomWord = wordsArray.randomElement() ?? ""
@@ -78,7 +78,7 @@ final class GameDatabase {
     func retrieveWords() -> [String] {
         let words = realm?
             .objects(Word.self)
-            .filter { $0.item.count == 5 }
+            .filter { $0.item.count == Global.wordLength }
         return words?.compactMap { $0.item } ?? []
     }
 
