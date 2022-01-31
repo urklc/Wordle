@@ -82,6 +82,21 @@ final class GameDatabase {
         return words?.compactMap { $0.item } ?? []
     }
 
+    func removeExpired() {
+        let todayComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        let games = realm?
+            .objects(Game.self)
+            .filter {
+                let components = Calendar.current.dateComponents([.year, .month, .day], from: $0.date)
+                return components == todayComponents
+            }
+        if let games = games {
+            try? realm?.write {
+                realm?.delete(games)
+            }
+        }
+    }
+
     private func markAsSkip(word: String) {
         let word = realm?
             .objects(Word.self)

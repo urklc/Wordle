@@ -68,10 +68,6 @@ extension ListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let game = items[indexPath.row]
-        guard game.words.count < Global.totalTryCount else {
-            return
-        }
-
         proceedToGame(game: game)
     }
 }

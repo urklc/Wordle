@@ -17,6 +17,8 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = UIColor(named: "background")
+
         wordTextField.addTarget(self,
                                 action: #selector(textDidChange(_:)),
                                 for: .editingChanged)
@@ -29,6 +31,9 @@ class GameViewController: UIViewController {
             for word in words {
                 self?.addCharacterBox(word: word)
                 self?.apply(InputComplete(input: word, targetWord: targetWord))
+            }
+            if words.count != Global.totalTryCount && !words.contains(targetWord) {
+                self?.wordTextField.becomeFirstResponder()
             }
         }
         model.onCharacterSuccess = { [weak self] word in
@@ -51,18 +56,40 @@ class GameViewController: UIViewController {
         }
         lastStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
-        for character in Array(word) {
+        for i in 0..<Global.wordLength {
+            let labelContainerView = UIView()
+
             let label = UILabel()
-            label.font = .systemFont(ofSize: 32)
-            label.text = String(character)
-            lastStackView.addArrangedSubview(label)
+            label.font = .boldSystemFont(ofSize: 44)
+            label.textColor = .white
+            label.textAlignment = .center
+            if word.count > i {
+                label.text = String(word[word.index(word.startIndex, offsetBy: i)])
+                    .uppercased(with: Locale(identifier: "tr-TR"))
+            } else {
+                label.text = " "
+            }
+
+            labelContainerView.layer.borderWidth = 2.0
+            labelContainerView.layer.borderColor = UIColor(named: "border")?.cgColor
+            labelContainerView.backgroundColor = UIColor(named: "border")
+            labelContainerView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: labelContainerView.leadingAnchor, constant: 8),
+                label.trailingAnchor.constraint(equalTo: labelContainerView.trailingAnchor, constant: -8),
+                label.topAnchor.constraint(equalTo: labelContainerView.topAnchor, constant: 8),
+                label.bottomAnchor.constraint(equalTo: labelContainerView.bottomAnchor, constant: -8),
+                labelContainerView.widthAnchor.constraint(equalTo: labelContainerView.heightAnchor)
+            ])
+            lastStackView.addArrangedSubview(labelContainerView)
         }
     }
 
     private func addStackViewForNewWord() {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 32
+        stackView.spacing = 4
         stackView.distribution = .fillEqually
         baseStackView.addArrangedSubview(stackView)
 
@@ -74,11 +101,15 @@ class GameViewController: UIViewController {
             return
         }
         for i in 0..<lastStackView.arrangedSubviews.count {
-            let label = lastStackView.arrangedSubviews[i] as? UILabel
+            let view = lastStackView.arrangedSubviews[i]
             if inputComplete.matchedIndexes.contains(i) {
-                label?.textColor = .systemGreen
+                let color = UIColor(named: "green")
+                view.layer.borderColor = color?.cgColor
+                view.backgroundColor = color
             } else if inputComplete.nearlyMatchedIndexes.contains(i) {
-                label?.textColor = .systemYellow
+                let color = UIColor(named: "yellow")
+                view.layer.borderColor = color?.cgColor
+                view.backgroundColor = color
             }
         }
         addStackViewForNewWord()
