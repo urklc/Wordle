@@ -25,7 +25,7 @@ final class GameViewModel {
         }
     }
     var onCharacterSuccess: ((String) -> Void)? = nil
-    var onInputComplete: ((InputComplete) -> Void)? = nil
+    var onWordComplete: ((WordComplete) -> Void)? = nil
     var onError: ((WordleError) -> Void)? = nil
     var onGameOver: ((Bool) -> Void)? = nil
 
@@ -50,12 +50,15 @@ final class GameViewModel {
         }
     }
 
-    private let database = GameDatabase()
+    private let database: GameDatabaseProtocol
     private var currentGame: Game?
 
     // MARK: - Init
 
-    init(game: Game?) {
+    init(database: GameDatabaseProtocol = GameRealmDatabase(),
+         game: Game?) {
+        self.database = database
+
         if let game = game {
             currentGame = game
             for word in game.words {
@@ -102,7 +105,7 @@ final class GameViewModel {
 
         database.addWordToGame(game: game, word: input)
 
-        onInputComplete?(InputComplete(input: input, targetWord: targetWord))
+        onWordComplete?(WordComplete(input: input, targetWord: targetWord))
 
         let isSuccess = inputWords.contains(targetWord)
         let isCompleted = inputWords.count == Global.totalTryCount

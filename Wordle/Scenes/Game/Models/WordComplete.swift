@@ -1,5 +1,5 @@
 //
-//  InputComplete.swift
+//  WordComplete.swift
 //  Wordle
 //
 //  Created by Uğur Kılıç on 30.01.2022.
@@ -7,10 +7,16 @@
 
 import Foundation
 
-struct InputComplete {
+struct WordComplete {
     let word: String
     let matchedIndexes: [Int]
     let nearlyMatchedIndexes: [Int]
+
+    init(word: String, matchedIndexes: [Int], nearlyMatchedIndexes: [Int]) {
+        self.word = word
+        self.matchedIndexes = matchedIndexes
+        self.nearlyMatchedIndexes = nearlyMatchedIndexes
+    }
 
     init(input: String, targetWord: String) {
         var matchedIndexes: [Int] = []
@@ -29,5 +35,14 @@ struct InputComplete {
         self.matchedIndexes = matchedIndexes
         self.nearlyMatchedIndexes = nearlyMatchedIndexes
         self.word = input
+    }
+}
+
+extension WordComplete: Equatable {
+
+    static func ==(lhs: WordComplete, rhs: WordComplete) -> Bool {
+        return lhs.word == rhs.word
+        && lhs.matchedIndexes == rhs.matchedIndexes
+        && lhs.nearlyMatchedIndexes == rhs.nearlyMatchedIndexes
     }
 }

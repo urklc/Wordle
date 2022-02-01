@@ -8,7 +8,15 @@
 import Foundation
 import RealmSwift
 
-final class GameDatabase {
+protocol GameDatabaseProtocol {
+    func retrieveAndConsumeRandomWord() -> String
+    func initializeGame(targetWord: String) -> Game
+    func addWordToGame(game: Game, word: String)
+    func retrieveWords() -> [String]
+    func updateGameStatus(game: Game, isSuccess: Bool)
+}
+
+final class GameRealmDatabase: GameDatabaseProtocol {
 
     var documentsFileURL: URL? {
         if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {

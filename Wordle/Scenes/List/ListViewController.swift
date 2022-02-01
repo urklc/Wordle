@@ -12,7 +12,7 @@ class ListViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    private let database = GameDatabase()
+    private let database = GameRealmDatabase()
 
     private var items: [Game] = [] {
         didSet {

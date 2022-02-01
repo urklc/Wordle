@@ -30,7 +30,7 @@ class GameViewController: UIViewController {
             self?.addStackViewForNewWord()
             for word in words {
                 self?.addCharacterBox(word: word)
-                self?.apply(InputComplete(input: word, targetWord: targetWord))
+                self?.apply(WordComplete(input: word, targetWord: targetWord))
             }
             if words.count != Global.totalTryCount && !words.contains(targetWord) {
                 self?.wordTextField.becomeFirstResponder()
@@ -39,8 +39,8 @@ class GameViewController: UIViewController {
         model.onCharacterSuccess = { [weak self] word in
             self?.addCharacterBox(word: word)
         }
-        model.onInputComplete = { [weak self] inputComplete in
-            self?.apply(inputComplete)
+        model.onWordComplete = { [weak self] wordComplete in
+            self?.apply(wordComplete)
         }
         model.onError = { [weak self] error in
             self?.presentAlert(title: "hata", message: error.description)
@@ -97,17 +97,17 @@ class GameViewController: UIViewController {
         wordTextField.text = ""
     }
 
-    private func apply(_ inputComplete: InputComplete) {
+    private func apply(_ wordComplete: WordComplete) {
         guard let lastStackView = baseStackView.arrangedSubviews.last as? UIStackView else {
             return
         }
         for i in 0..<lastStackView.arrangedSubviews.count {
             let view = lastStackView.arrangedSubviews[i]
-            if inputComplete.matchedIndexes.contains(i) {
+            if wordComplete.matchedIndexes.contains(i) {
                 let color = UIColor(named: "green")
                 view.layer.borderColor = color?.cgColor
                 view.backgroundColor = color
-            } else if inputComplete.nearlyMatchedIndexes.contains(i) {
+            } else if wordComplete.nearlyMatchedIndexes.contains(i) {
                 let color = UIColor(named: "yellow")
                 view.layer.borderColor = color?.cgColor
                 view.backgroundColor = color
