@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,31 +33,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBk-sm-AbK">
+                                <rect key="frame" x="162.5" y="103" width="89" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Yeni Oyun" cornerStyle="capsule">
+                                    <backgroundConfiguration key="background" strokeWidth="1" strokeOutset="5">
+                                        <color key="backgroundColor" name="border"/>
+                                    </backgroundConfiguration>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="zfo-jK-rYj" eventType="touchUpInside" id="3y4-Bm-mbe"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YY8-Ba-YKI">
-                                <rect key="frame" x="0.0" y="88" width="414" height="392"/>
+                                <rect key="frame" x="15" y="149" width="384" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="zfo-jK-rYj" id="Cx2-na-8jk"/>
                                     <outlet property="delegate" destination="zfo-jK-rYj" id="0mS-Qc-cdI"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="xrf-8R-SQB">
-                                <rect key="frame" x="0.0" y="564" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Yeni Oyun"/>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="zfo-jK-rYj" eventType="touchUpInside" id="Le7-Cx-uSr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WSt-IF-q0y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="YY8-Ba-YKI" firstAttribute="top" secondItem="WSt-IF-q0y" secondAttribute="top" id="fZs-Vf-8RI"/>
-                            <constraint firstItem="YY8-Ba-YKI" firstAttribute="leading" secondItem="WSt-IF-q0y" secondAttribute="leading" id="rrJ-vE-4JX"/>
-                            <constraint firstItem="xrf-8R-SQB" firstAttribute="top" secondItem="YY8-Ba-YKI" secondAttribute="bottom" constant="84" id="wpZ-ea-IBS"/>
-                            <constraint firstItem="WSt-IF-q0y" firstAttribute="trailing" secondItem="YY8-Ba-YKI" secondAttribute="trailing" id="zj2-Wa-yEQ"/>
+                            <constraint firstItem="CBk-sm-AbK" firstAttribute="centerX" secondItem="WSt-IF-q0y" secondAttribute="centerX" id="7es-1H-2P1"/>
+                            <constraint firstItem="YY8-Ba-YKI" firstAttribute="top" secondItem="CBk-sm-AbK" secondAttribute="bottom" constant="15" id="Hhz-hu-1Am"/>
+                            <constraint firstItem="CBk-sm-AbK" firstAttribute="top" secondItem="WSt-IF-q0y" secondAttribute="top" constant="15" id="Lmi-dM-K4V"/>
+                            <constraint firstItem="YY8-Ba-YKI" firstAttribute="leading" secondItem="WSt-IF-q0y" secondAttribute="leading" constant="15" id="rrJ-vE-4JX"/>
+                            <constraint firstItem="WSt-IF-q0y" firstAttribute="bottom" secondItem="YY8-Ba-YKI" secondAttribute="bottom" id="y4E-h0-48Q"/>
+                            <constraint firstItem="WSt-IF-q0y" firstAttribute="trailing" secondItem="YY8-Ba-YKI" secondAttribute="trailing" constant="15" id="zj2-Wa-yEQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VqA-nS-E1U"/>
@@ -105,6 +112,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="border">
+            <color red="0.22745098039215686" green="0.22745098039215686" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

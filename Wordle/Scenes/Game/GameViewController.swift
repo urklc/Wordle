@@ -46,6 +46,7 @@ class GameViewController: UIViewController {
             self?.presentAlert(title: "hata", message: error.description)
         }
         model.onGameOver = { [weak self] isSuccess in
+            self?.wordTextField.resignFirstResponder()
             self?.presentAlert(title: "oyun bitti", message: isSuccess ? "basarili :)" : "basarisiz :(")
         }
     }

@@ -23,7 +23,10 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Game")
+        view.backgroundColor = UIColor(named: "background")
+
+        tableView.backgroundColor = .clear
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GameCell")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -56,10 +59,19 @@ extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Game", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
         let game = items[indexPath.row]
-        cell.textLabel?.text = "\(game.words.count) - \(game.date)"
-        cell.textLabel?.textColor = game.isSuccess ? .systemGreen : (game.words.count == Global.totalTryCount ? .red : .darkGray)
+
+        cell.textLabel?.textColor = .white
+        switch game.state {
+        case .pending(let remainingWords):
+            cell.textLabel?.text = "Tap to guess the word: \(remainingWords) left!"
+            cell.contentView.backgroundColor = UIColor(named: "yellow")
+        case .completed(let isSuccess):
+            cell.textLabel?.text = isSuccess ? "Success :)" : "Fail :("
+            cell.contentView.backgroundColor = UIColor(named: isSuccess ? "green" : "red")
+        }
+
         return cell
     }
 }
@@ -69,5 +81,9 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let game = items[indexPath.row]
         proceedToGame(game: game)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 }
