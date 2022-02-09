@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Wordle
+
+  Created by Uğur Kılıç on 9.02.2022.
+  
+*/
+
+"game_over" = "Game over";

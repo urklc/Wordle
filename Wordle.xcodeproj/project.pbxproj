@@ -21,6 +21,7 @@
 		3C9447E227A7D3DD0049AD3E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9447E127A7D3DD0049AD3E /* Global.swift */; };
 		3C9447E727A7D53A0049AD3E /* WordleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9447E627A7D53A0049AD3E /* WordleError.swift */; };
 		3CB574E42791D4D400CEA86B /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB574E32791D4D400CEA86B /* GameDatabase.swift */; };
+		3CEB074727B4090800025F3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CEB074927B4090800025F3E /* Localizable.strings */; };
 		3CF690172795B41B00F493A9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF690162795B41B00F493A9 /* Game.swift */; };
 		3CF6901C2795B7D500F493A9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF6901B2795B7D500F493A9 /* ListViewController.swift */; };
 		5AC318CD4F00C88122FFD363 /* Pods_Wordle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E720DD2A6B58A2DF5EB885BF /* Pods_Wordle.framework */; };
@@ -55,6 +56,10 @@
 		3C9447E127A7D3DD0049AD3E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		3C9447E627A7D53A0049AD3E /* WordleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleError.swift; sourceTree = "<group>"; };
 		3CB574E32791D4D400CEA86B /* GameDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDatabase.swift; sourceTree = "<group>"; };
+		3CEB074827B4090800025F3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3CEB074A27B4094200025F3E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3CEB074C27B40AF100025F3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		3CEB074E27B40AF100025F3E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		3CF690162795B41B00F493A9 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		3CF6901B2795B7D500F493A9 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3F216129DDEBEDC5DEEE1B86 /* Pods-Wordle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wordle.debug.xcconfig"; path = "Target Support Files/Pods-Wordle/Pods-Wordle.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +121,7 @@
 				3C046B5E279057B800A36C28 /* AppDelegate.swift */,
 				3C9447E127A7D3DD0049AD3E /* Global.swift */,
 				3C046B60279057B800A36C28 /* SceneDelegate.swift */,
+				3CEB074927B4090800025F3E /* Localizable.strings */,
 				3C046B67279057BA00A36C28 /* Assets.xcassets */,
 				3CF6901A2795B7AC00F493A9 /* Database */,
 				3C9447E427A7D4230049AD3E /* Scenes */,
@@ -262,6 +268,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 3C046B52279057B800A36C28;
 			productRefGroup = 3C046B5C279057B800A36C28 /* Products */;
@@ -279,6 +286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CEB074727B4090800025F3E /* Localizable.strings in Resources */,
 				3C046B6B279057BA00A36C28 /* LaunchScreen.storyboard in Resources */,
 				3C046BB42790765700A36C28 /* words.realm in Resources */,
 				3C046B68279057BA00A36C28 /* Assets.xcassets in Resources */,
@@ -387,8 +395,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				3C046B6A279057BA00A36C28 /* Base */,
+				3CEB074C27B40AF100025F3E /* en */,
+				3CEB074E27B40AF100025F3E /* tr */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3CEB074927B4090800025F3E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CEB074827B4090800025F3E /* en */,
+				3CEB074A27B4094200025F3E /* tr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -398,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -459,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -525,6 +546,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,7 +556,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -553,6 +575,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,7 +585,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
