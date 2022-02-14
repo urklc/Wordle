@@ -96,7 +96,7 @@ final class GameRealmDatabase: GameDatabaseProtocol {
             .objects(Game.self)
             .filter {
                 let components = Calendar.current.dateComponents([.year, .month, .day], from: $0.date)
-                return components == todayComponents
+                return components != todayComponents
             }
         if let games = games {
             try? realm?.write {
