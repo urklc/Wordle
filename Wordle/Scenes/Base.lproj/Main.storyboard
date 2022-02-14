@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="13y-It-eHx">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -46,7 +47,7 @@
                                     <action selector="buttonPressed:" destination="zfo-jK-rYj" eventType="touchUpInside" id="3y4-Bm-mbe"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YY8-Ba-YKI">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YY8-Ba-YKI">
                                 <rect key="frame" x="15" y="149" width="384" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
@@ -54,13 +55,21 @@
                                     <outlet property="delegate" destination="zfo-jK-rYj" id="0mS-Qc-cdI"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VK-1E-9Ot">
+                                <rect key="frame" x="186" y="149" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WSt-IF-q0y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CBk-sm-AbK" firstAttribute="centerX" secondItem="WSt-IF-q0y" secondAttribute="centerX" id="7es-1H-2P1"/>
+                            <constraint firstItem="3VK-1E-9Ot" firstAttribute="centerX" secondItem="YY8-Ba-YKI" secondAttribute="centerX" id="D3p-QM-HCO"/>
                             <constraint firstItem="YY8-Ba-YKI" firstAttribute="top" secondItem="CBk-sm-AbK" secondAttribute="bottom" constant="15" id="Hhz-hu-1Am"/>
                             <constraint firstItem="CBk-sm-AbK" firstAttribute="top" secondItem="WSt-IF-q0y" secondAttribute="top" constant="15" id="Lmi-dM-K4V"/>
+                            <constraint firstItem="3VK-1E-9Ot" firstAttribute="top" secondItem="YY8-Ba-YKI" secondAttribute="top" id="eCv-u7-VLe"/>
                             <constraint firstItem="YY8-Ba-YKI" firstAttribute="leading" secondItem="WSt-IF-q0y" secondAttribute="leading" constant="15" id="rrJ-vE-4JX"/>
                             <constraint firstItem="WSt-IF-q0y" firstAttribute="bottom" secondItem="YY8-Ba-YKI" secondAttribute="bottom" id="y4E-h0-48Q"/>
                             <constraint firstItem="WSt-IF-q0y" firstAttribute="trailing" secondItem="YY8-Ba-YKI" secondAttribute="trailing" constant="15" id="zj2-Wa-yEQ"/>
@@ -68,6 +77,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="VqA-nS-E1U"/>
                     <connections>
+                        <outlet property="newGameLabel" destination="3VK-1E-9Ot" id="zqz-OD-BZU"/>
                         <outlet property="tableView" destination="YY8-Ba-YKI" id="thW-xe-YEP"/>
                     </connections>
                 </viewController>
@@ -87,10 +97,13 @@
                                 <rect key="frame" x="16" y="60" width="382" height="386"/>
                             </stackView>
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Frx-DY-aC8">
-                                <rect key="frame" x="159" y="482" width="97" height="34"/>
+                                <rect key="frame" x="159" y="466" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="NUC-3l-cIW"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

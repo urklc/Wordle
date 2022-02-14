@@ -10,13 +10,16 @@ import UIKit
 
 class ListViewController: UIViewController {
 
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var newGameLabel: UILabel!
 
     private let database = GameRealmDatabase()
 
     private var items: [Game] = [] {
         didSet {
             tableView.reloadData()
+            tableView.isHidden = items.isEmpty
+            newGameLabel.isHidden = !items.isEmpty
         }
     }
 
@@ -24,6 +27,9 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor(named: "background")
+
+        newGameLabel.textColor = .white
+        newGameLabel.text = "Bugunun oyunlari bos, yeni oyun ekleyin."
 
         tableView.backgroundColor = .clear
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GameCell")
