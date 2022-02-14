@@ -31,7 +31,7 @@ class GameViewModelTests: XCTestCase {
             }
         }
 
-        model.tryToProvide(input: "a1bcd")
+        XCTAssertFalse(model.canProvide(input: "a1bcd"))
     }
 
     func testModelTriggersOnCharacterSuccess() {
@@ -42,7 +42,7 @@ class GameViewModelTests: XCTestCase {
             XCTAssertEqual(value, testValue, "Model didn't call on character success when input is updated!")
         }
 
-        model.tryToProvide(input: testValue)
+        XCTAssertTrue(model.canProvide(input: testValue))
     }
 
     func testModelTriggersOnCompleteIfWordIsEnough() {
@@ -57,7 +57,7 @@ class GameViewModelTests: XCTestCase {
                            WordComplete(word: "kitap", matchedIndexes: [0], nearlyMatchedIndexes: [3]))
         }
 
-        model.tryToProvide(input: "kitap")
+        XCTAssertTrue(model.canProvide(input: "kitap"))
     }
 }
 

@@ -29,6 +29,16 @@ final class GameViewModel {
     var onError: ((WordleError) -> Void)? = nil
     var onGameOver: ((Bool) -> Void)? = nil
 
+    var currentInput: String = "" {
+        didSet {
+            onCharacterSuccess?(currentInput)
+
+            if currentInput.count == Global.wordLength {
+                provide(input: currentInput)
+            }
+        }
+    }
+
     private(set) var inputWords: [String] = []
 
     // MARK: - Private Methods
@@ -37,16 +47,6 @@ final class GameViewModel {
         didSet {
             inputWords.removeAll()
             currentInput = ""
-        }
-    }
-
-    private var currentInput: String = "" {
-        didSet {
-            onCharacterSuccess?(currentInput)
-
-            if currentInput.count == Global.wordLength {
-                provide(input: currentInput)
-            }
         }
     }
 
@@ -74,13 +74,15 @@ final class GameViewModel {
 
     // MARK: - Public Methods
 
-    func tryToProvide(input: String) {
+    func canProvide(input: String) -> Bool {
+        guard input.count <= Global.wordLength else {
+            return false
+        }
         guard Constant.alphabet.isSuperset(of: CharacterSet(charactersIn: input)) else {
             onError?(.notValidCharacter)
-            return
+            return false
         }
-
-        currentInput = input
+        return true
     }
 
     // MARK: - Private Methods

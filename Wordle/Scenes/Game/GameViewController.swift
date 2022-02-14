@@ -18,10 +18,16 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor(named: "background")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.backward"),
+            style: .plain,
+            target: self,
+            action: #selector(back))
 
         wordTextField.addTarget(self,
-                                action: #selector(textDidChange(_:)),
-                                for: .editingChanged)
+                                        action: #selector(textDidChange(_:)),
+                                        for: .editingChanged)
+
         subscribeToModel()
     }
 
@@ -120,15 +126,27 @@ class GameViewController: UIViewController {
     }
 
     private func presentAlert(title: String, message: String) {
-        let alertController = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
-        present(alertController, animated: true, completion: nil)
+        print(message)
+    }
+
+    @objc func back() {
+        navigationController?.popViewController(animated: true)
     }
 
     @objc func textDidChange(_ sender: UITextField) {
-        model.tryToProvide(input: sender.text!)
+        model.currentInput = sender.text!
+    }
+}
+
+extension GameViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        if let text = textField.text,
+           let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            return model.canProvide(input: updatedText)
+        }
+        return true
     }
 }
