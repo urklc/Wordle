@@ -94,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="382" placeholderIntrinsicHeight="386" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qmO-di-JRn">
-                                <rect key="frame" x="16" y="60" width="382" height="386"/>
+                                <rect key="frame" x="33" y="46" width="348" height="386"/>
                             </stackView>
                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Frx-DY-aC8">
                                 <rect key="frame" x="159" y="466" width="97" height="34"/>
@@ -109,9 +109,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qmO-di-JRn" secondAttribute="trailing" constant="16" id="IRd-Xn-awd"/>
-                            <constraint firstItem="qmO-di-JRn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bPs-ZR-Syc"/>
-                            <constraint firstItem="qmO-di-JRn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="sOa-BM-iG6"/>
+                            <constraint firstItem="qmO-di-JRn" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.84" id="YKX-q9-gwE"/>
+                            <constraint firstItem="qmO-di-JRn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fXj-dY-3VL"/>
+                            <constraint firstItem="qmO-di-JRn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="2" id="sOa-BM-iG6"/>
                         </constraints>
                     </view>
                     <connections>

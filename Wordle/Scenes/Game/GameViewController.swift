@@ -104,10 +104,12 @@ class GameViewController: UIViewController {
         baseStackView.addArrangedSubview(stackView)
 
         wordTextField.text = ""
+        addCharacterBox(word: "")
     }
 
     private func apply(_ wordComplete: WordComplete) {
-        guard let lastStackView = baseStackView.arrangedSubviews.last as? UIStackView else {
+        guard baseStackView.arrangedSubviews.count < Global.totalTryCount,
+              let lastStackView = baseStackView.arrangedSubviews.last as? UIStackView else {
             return
         }
         for i in 0..<lastStackView.arrangedSubviews.count {
