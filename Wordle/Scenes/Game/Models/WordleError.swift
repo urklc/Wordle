@@ -15,11 +15,11 @@ enum WordleError: Error, CustomStringConvertible {
     var description: String {
         switch self {
         case .notValidCharacter:
-            return "not valid character"
+            return NSLocalizedString("error_not_valid_character", comment: "")
         case .notInDictionary:
-            return "not in dictionary"
+            return NSLocalizedString("error_not_in_dictionary", comment: "")
         case .inputAlreadyExists:
-            return "input already exists"
+            return NSLocalizedString("error_input_exists", comment: "")
         }
     }
 }

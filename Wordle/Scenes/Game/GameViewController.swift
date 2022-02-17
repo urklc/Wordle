@@ -49,14 +49,14 @@ class GameViewController: UIViewController {
             self?.apply(wordComplete)
         }
         model.onError = { [weak self] error in
-            self?.presentAlert(title: "hata", message: error.description)
+            self?.presentAlert(title: NSLocalizedString("error_title", comment: ""), message: error.description)
         }
         model.onGameOver = { [weak self] isSuccess in
             self?.wordTextField.resignFirstResponder()
 
             self?.presentAlert(
                 title: NSLocalizedString("game_over", comment: "Title of alert when game is over!"),
-                message: isSuccess ? "basarili :)" : "basarisiz :(")
+                message: isSuccess ? NSLocalizedString("success_title", comment: "") : NSLocalizedString("fail_title", comment: ""))
         }
     }
 
