@@ -7,3 +7,7 @@
 */
 
 "game_over" = "Oyun bitti";
+"empty_game_info" = "Bugunun oyunlari boş, yeni oyun ekleyin.";
+"in_progress_game_info" = "Kalan deneme: %1$d";
+"success_title" = "Başarılı :)";
+"fail_title" = "Başarısız :(";

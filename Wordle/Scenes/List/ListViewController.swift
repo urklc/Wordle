@@ -12,6 +12,7 @@ class ListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var newGameLabel: UILabel!
+    @IBOutlet weak var emptyGameView: UIView!
 
     private let database = GameRealmDatabase()
 
@@ -19,7 +20,7 @@ class ListViewController: UIViewController {
         didSet {
             tableView.reloadData()
             tableView.isHidden = items.isEmpty
-            newGameLabel.isHidden = !items.isEmpty
+            emptyGameView.isHidden = !items.isEmpty
         }
     }
 
@@ -29,7 +30,7 @@ class ListViewController: UIViewController {
         view.backgroundColor = UIColor(named: "background")
 
         newGameLabel.textColor = .white
-        newGameLabel.text = "Bugunun oyunlari bos, yeni oyun ekleyin."
+        newGameLabel.text = NSLocalizedString("empty_game_info", comment: "")
 
         tableView.backgroundColor = .clear
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GameCell")
@@ -71,10 +72,11 @@ extension ListViewController: UITableViewDataSource {
         cell.textLabel?.textColor = .white
         switch game.state {
         case .pending(let remainingWords):
-            cell.textLabel?.text = "Tap to guess the word: \(remainingWords) left!"
+            cell.textLabel?.text = String(format: NSLocalizedString("in_progress_game_info", comment: ""),
+                                          remainingWords)
             cell.contentView.backgroundColor = UIColor(named: "yellow")
         case .completed(let isSuccess):
-            cell.textLabel?.text = isSuccess ? "Success :)" : "Fail :("
+            cell.textLabel?.text = isSuccess ? NSLocalizedString("success_title", comment: "") : NSLocalizedString("fail_title", comment: "")
             cell.contentView.backgroundColor = UIColor(named: isSuccess ? "green" : "red")
         }
 
