@@ -153,7 +153,7 @@ class GameViewController: UIViewController {
                                                                  from: Calendar.current.startOfDay(for: referenceDate),
                                                                  to: Calendar.current.startOfDay(for: Date()))
             let stateText = isSuccess ? "\(baseStackView.arrangedSubviews.count)" : "X"
-            let shareTitle = "Wordle \(dateComponents.day ?? -1) \(stateText)/6"
+            let shareTitle = "Kelimecik \(dateComponents.day ?? -1) \(stateText)/6"
             let squareMap = squareMatrix.map { rowMatrix in
                 return rowMatrix.map { indexValue in
                     switch indexValue {
