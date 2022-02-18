@@ -10,9 +10,13 @@ import UIKit
 class GameViewController: UIViewController {
 
     var model: GameViewModel!
+    private var shareText: String?
+    private var squareMatrix: [[Int]] = Array(repeating: [], count: Global.totalTryCount)
 
     @IBOutlet private weak var baseStackView: UIStackView!
     @IBOutlet private weak var wordTextField: UITextField!
+    @IBOutlet private weak var shareView: UIView!
+    @IBOutlet private weak var shareButton: UIButton!
     private weak var currentCharacterStackView: UIStackView?
 
     override func viewDidLoad() {
@@ -28,6 +32,7 @@ class GameViewController: UIViewController {
         wordTextField.addTarget(self,
                                         action: #selector(textDidChange(_:)),
                                         for: .editingChanged)
+        shareButton.setTitle(NSLocalizedString("share", comment: ""), for: .normal)
 
         subscribeToModel()
     }
@@ -54,6 +59,7 @@ class GameViewController: UIViewController {
         }
         model.onGameOver = { [weak self] isSuccess in
             self?.wordTextField.resignFirstResponder()
+            self?.shareView.isHidden = false
 
             self?.presentAlert(
                 title: NSLocalizedString("game_over", comment: "Title of alert when game is over!"),
@@ -113,22 +119,45 @@ class GameViewController: UIViewController {
         guard let currentCharacterStackView = currentCharacterStackView else {
             return
         }
+        var rowMatrix = Array(repeating: -1, count: Global.wordLength)
         for i in 0..<currentCharacterStackView.arrangedSubviews.count {
             let view = currentCharacterStackView.arrangedSubviews[i]
             if wordComplete.matchedIndexes.contains(i) {
                 let color = UIColor(named: "green")
                 view.layer.borderColor = color?.cgColor
                 view.backgroundColor = color
+                rowMatrix[i] = 1
             } else if wordComplete.nearlyMatchedIndexes.contains(i) {
                 let color = UIColor(named: "yellow")
                 view.layer.borderColor = color?.cgColor
                 view.backgroundColor = color
+                rowMatrix[i] = 0
             }
         }
 
-        if baseStackView.arrangedSubviews.count != Global.totalTryCount &&
-           wordComplete.matchedIndexes.count != Global.wordLength {
+        squareMatrix[baseStackView.arrangedSubviews.count - 1] = rowMatrix
+
+        let isSuccess = wordComplete.matchedIndexes.count == Global.wordLength
+        if baseStackView.arrangedSubviews.count != Global.totalTryCount
+            && !isSuccess {
             addStackViewForNewWord()
+        } else {
+            let referenceDate = Date(timeIntervalSince1970: 1645165202)
+            let dateComponents = Calendar.current.dateComponents([.day],
+                                                                 from: Calendar.current.startOfDay(for: referenceDate),
+                                                                 to: Calendar.current.startOfDay(for: Date()))
+            let stateText = isSuccess ? "\(baseStackView.arrangedSubviews.count)" : "X"
+            let shareTitle = "Wordle \(dateComponents.day ?? -1) \(stateText)/6"
+            let squareMap = squareMatrix.map { rowMatrix in
+                return rowMatrix.map { indexValue in
+                    switch indexValue {
+                    case 1: return "🟩";
+                    case 0: return "🟨";
+                    default: return "⬛";
+                    }
+                }.joined(separator: "")
+            }.joined(separator: "\n")
+            shareText = [shareTitle, squareMap].joined(separator: "\n")
         }
     }
 
@@ -144,6 +173,15 @@ class GameViewController: UIViewController {
 
     @objc func textDidChange(_ sender: UITextField) {
         model.currentInput = sender.text!
+    }
+
+    @IBAction func shareButtonTapped(_ sender: Any) {
+        guard let shareText = shareText else {
+            return
+        }
+
+        let activityViewController = UIActivityViewController(activityItems: [shareText], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }
 
