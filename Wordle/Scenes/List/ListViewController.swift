@@ -76,7 +76,9 @@ extension ListViewController: UITableViewDataSource {
                                           remainingWords)
             cell.contentView.backgroundColor = UIColor(named: "yellow")
         case .completed(let isSuccess):
-            cell.textLabel?.text = isSuccess ? NSLocalizedString("success_title", comment: "") : NSLocalizedString("fail_title", comment: "")
+            let failMessage = isSuccess ? NSLocalizedString("success_title", comment: "") : NSLocalizedString("fail_title", comment: "")
+            cell.textLabel?.text = "\(failMessage) - \(game.targetWord)"
+
             cell.contentView.backgroundColor = UIColor(named: isSuccess ? "green" : "red")
         }
 
