@@ -46,6 +46,8 @@ class GameViewController: UIViewController {
             }
             if words.count != Global.totalTryCount && !words.contains(targetWord) {
                 self?.wordTextField.becomeFirstResponder()
+            } else {
+                self?.shareView.isHidden = false
             }
         }
         model.onCharacterSuccess = { [weak self] word in
