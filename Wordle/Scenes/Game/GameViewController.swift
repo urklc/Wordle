@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
 
     @IBOutlet private weak var baseStackView: UIStackView!
     @IBOutlet private weak var wordTextField: UITextField!
+    private weak var currentCharacterStackView: UIStackView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +62,10 @@ class GameViewController: UIViewController {
     }
 
     private func addCharacterBox(word: String) {
-        guard let lastStackView = baseStackView.arrangedSubviews.last as? UIStackView else {
+        guard let currentCharacterStackView = currentCharacterStackView else {
             return
         }
-        lastStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        currentCharacterStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
         for i in 0..<Global.wordLength {
             let labelContainerView = UIView()
@@ -92,7 +93,7 @@ class GameViewController: UIViewController {
                 label.bottomAnchor.constraint(equalTo: labelContainerView.bottomAnchor, constant: -8),
                 labelContainerView.widthAnchor.constraint(equalTo: labelContainerView.heightAnchor)
             ])
-            lastStackView.addArrangedSubview(labelContainerView)
+            currentCharacterStackView.addArrangedSubview(labelContainerView)
         }
     }
 
@@ -103,17 +104,17 @@ class GameViewController: UIViewController {
         stackView.distribution = .fillEqually
         baseStackView.addArrangedSubview(stackView)
 
+        currentCharacterStackView = stackView
         wordTextField.text = ""
         addCharacterBox(word: "")
     }
 
     private func apply(_ wordComplete: WordComplete) {
-        guard baseStackView.arrangedSubviews.count < Global.totalTryCount,
-              let lastStackView = baseStackView.arrangedSubviews.last as? UIStackView else {
+        guard let currentCharacterStackView = currentCharacterStackView else {
             return
         }
-        for i in 0..<lastStackView.arrangedSubviews.count {
-            let view = lastStackView.arrangedSubviews[i]
+        for i in 0..<currentCharacterStackView.arrangedSubviews.count {
+            let view = currentCharacterStackView.arrangedSubviews[i]
             if wordComplete.matchedIndexes.contains(i) {
                 let color = UIColor(named: "green")
                 view.layer.borderColor = color?.cgColor
@@ -124,11 +125,17 @@ class GameViewController: UIViewController {
                 view.backgroundColor = color
             }
         }
-        addStackViewForNewWord()
+
+        if baseStackView.arrangedSubviews.count != Global.totalTryCount &&
+           wordComplete.matchedIndexes.count != Global.wordLength {
+            addStackViewForNewWord()
+        }
     }
 
     private func presentAlert(title: String, message: String) {
-        print(message)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 
     @objc func back() {
