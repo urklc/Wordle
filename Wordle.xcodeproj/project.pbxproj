@@ -20,6 +20,8 @@
 		3C608D9427A6D4CC00AFB470 /* WordComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C608D9327A6D4CC00AFB470 /* WordComplete.swift */; };
 		3C9447E227A7D3DD0049AD3E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9447E127A7D3DD0049AD3E /* Global.swift */; };
 		3C9447E727A7D53A0049AD3E /* WordleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9447E627A7D53A0049AD3E /* WordleError.swift */; };
+		3CAC36372834C62500805BA4 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC36362834C62500805BA4 /* ListTableViewCell.swift */; };
+		3CAC36392834C64600805BA4 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CAC36382834C64600805BA4 /* ListTableViewCell.xib */; };
 		3CB574E42791D4D400CEA86B /* GameDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB574E32791D4D400CEA86B /* GameDatabase.swift */; };
 		3CEB074727B4090800025F3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3CEB074927B4090800025F3E /* Localizable.strings */; };
 		3CF690172795B41B00F493A9 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF690162795B41B00F493A9 /* Game.swift */; };
@@ -55,6 +57,8 @@
 		3C608D9327A6D4CC00AFB470 /* WordComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordComplete.swift; sourceTree = "<group>"; };
 		3C9447E127A7D3DD0049AD3E /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		3C9447E627A7D53A0049AD3E /* WordleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordleError.swift; sourceTree = "<group>"; };
+		3CAC36362834C62500805BA4 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		3CAC36382834C64600805BA4 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
 		3CB574E32791D4D400CEA86B /* GameDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDatabase.swift; sourceTree = "<group>"; };
 		3CEB074827B4090800025F3E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3CEB074A27B4094200025F3E /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -140,6 +144,8 @@
 		3C9447E327A7D41F0049AD3E /* List */ = {
 			isa = PBXGroup;
 			children = (
+				3CAC36362834C62500805BA4 /* ListTableViewCell.swift */,
+				3CAC36382834C64600805BA4 /* ListTableViewCell.xib */,
 				3CF6901B2795B7D500F493A9 /* ListViewController.swift */,
 			);
 			path = List;
@@ -290,6 +296,7 @@
 				3C046B6B279057BA00A36C28 /* LaunchScreen.storyboard in Resources */,
 				3C046BB42790765700A36C28 /* words.realm in Resources */,
 				3C046B68279057BA00A36C28 /* Assets.xcassets in Resources */,
+				3CAC36392834C64600805BA4 /* ListTableViewCell.xib in Resources */,
 				3C046B66279057B800A36C28 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +362,7 @@
 				3CF690172795B41B00F493A9 /* Game.swift in Sources */,
 				3CB574E42791D4D400CEA86B /* GameDatabase.swift in Sources */,
 				3C046BB22790733A00A36C28 /* Word.swift in Sources */,
+				3CAC36372834C62500805BA4 /* ListTableViewCell.swift in Sources */,
 				3C608D9427A6D4CC00AFB470 /* WordComplete.swift in Sources */,
 				3C046B5F279057B800A36C28 /* AppDelegate.swift in Sources */,
 				3CF6901C2795B7D500F493A9 /* ListViewController.swift in Sources */,
@@ -538,7 +546,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = TFEGNH9A5X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;
@@ -568,7 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = TFEGNH9A5X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Wordle/Info.plist;

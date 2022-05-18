@@ -27,13 +27,13 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(named: "background")
+        view.backgroundColor = UIColor.systemGroupedBackground
 
-        newGameLabel.textColor = .white
+        newGameLabel.textColor = .label
         newGameLabel.text = NSLocalizedString("empty_game_info", comment: "")
 
         tableView.backgroundColor = .clear
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GameCell")
+        tableView.register(UINib(nibName: "ListTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "GameCell")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,22 +66,9 @@ extension ListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! ListTableViewCell
         let game = items[indexPath.row]
-
-        cell.textLabel?.textColor = .white
-        switch game.state {
-        case .pending(let remainingWords):
-            cell.textLabel?.text = String(format: NSLocalizedString("in_progress_game_info", comment: ""),
-                                          remainingWords)
-            cell.contentView.backgroundColor = UIColor(named: "yellow")
-        case .completed(let isSuccess):
-            let failMessage = isSuccess ? NSLocalizedString("success_title", comment: "") : NSLocalizedString("fail_title", comment: "")
-            cell.textLabel?.text = "\(failMessage) - \(game.targetWord)"
-
-            cell.contentView.backgroundColor = UIColor(named: isSuccess ? "green" : "red")
-        }
-
+        cell.game = game
         return cell
     }
 }
@@ -91,9 +78,5 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let game = items[indexPath.row]
         proceedToGame(game: game)
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
     }
 }

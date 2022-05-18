@@ -9,8 +9,8 @@
 "game_over" = "Oyun bitti";
 "empty_game_info" = "Bugunün oyunları boş, yeni oyun ekleyin.";
 "in_progress_game_info" = "Kalan deneme: %1$d";
-"success_title" = "Başarılı :)";
-"fail_title" = "Başarısız :(";
+"success_title" = "Başarılı 🙃";
+"fail_title" = "Başarısız 🥲";
 "error_title" = "Bir hata oluştu";
 "error_not_valid_character" = "Geçersiz karakter";
 "error_not_in_dictionary" = "Kelime sözlükte bulunmuyor";
